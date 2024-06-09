@@ -84,9 +84,9 @@ Questo attacco evidenzia le vulnerabilità già note di un sito HTTP, dimostrand
 
 MITRE ATT&CK
 https://attack.mitre.org/
-    Adversary-in-the-Middle  https://attack.mitre.org/techniques/T1557/
-    ARP Cache Poisoning  https://attack.mitre.org/techniques/T1557/002/
-    Template Injection  https://attack.mitre.org/techniques/T1221/
+Adversary-in-the-Middle  https://attack.mitre.org/techniques/T1557/
+ARP Cache Poisoning  https://attack.mitre.org/techniques/T1557/002/
+Template Injection  https://attack.mitre.org/techniques/T1221/
 
 ChatGPT
 https://chatgpt.com
