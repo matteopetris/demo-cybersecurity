@@ -15,7 +15,7 @@ La configurazione nel mio caso specifico è:
 - **Macchina della vittima:** IP 10.0.2.6 MAC 08:00:27:65:4d:1c
 - **Gateway:** IP 10.0.2.1 MAC 52:54:00:12:35:00
 
-Per trovare l’indirizzo MAC dell’attaccante basta digitare da terminale `ip addr show eth0` mentre per trovare l’indirizzo IP si può usare `ifconfig`. Si può trovare l’indirizzo IP e MAC del gateway con il comando `ip neigh`.
+Per trovare l’indirizzo MAC dell’attaccante basta digitare da terminale `ip addr show eth0` mentre per trovare l’indirizzo IP si può usare `ifconfig`. Si può trovare l’indirizzo IP e MAC del gateway con il comando `ip neigh`. Per trovare l'idirizzo ip della vittima si può usare il comando 'nmap', in questo particolare caso 'nmap 10.0.2.0/24'. 
 
 # Svolgimento
 
@@ -65,9 +65,19 @@ Ora, se la vittima cercherà di collegarsi a `www.comunitamontanacarnia.it` invi
 
 ![Pagina vittima](images/image6.png)
 
-Poiché la pagina è sotto il controllo dell’attaccante, ho modificato il link associato alla scritta “Comunità di montagna della Carna” in modo che si colleghi a una copia della pagina [https://www.carnia.comunitafvg.it/](https://www.carnia.comunitafvg.it/). Anche questa è stata scaricata e caricata nel web server dell’attaccante. Inoltre, ho modificato anche il link alla pagina “accedi all’area personale” in alto a destra. Il sito web iniziale prevedeva vari metodi di autenticazione ma per semplicità ho selezionato solo quello con posteid. Quindi, quando la vittima schiaccerà su “accedi all’area personale” comparirà una copia della pagina di accesso con posteid. Affinché l’accesso vada a buon fine, è necessario che l’attaccante riesca a copiare velocemente il QRcode della pagina di accesso posteid e inserirla velocemente nella cartella `/var/www/html`. Infine, se anche la vittima scannerizzerà il QRcode in tempo permetterà l’autenticazione alla pagina da parte dell’attaccante. Inoltre, se la vittima inserirà le credenziali nella copia della pagina web, queste saranno visibili all’attaccante.
+## Un possibile risvolto
+
+Poiché la pagina è sotto il controllo dell’attaccante, ho modificato il link associato alla scritta “Comunità di montagna della Carna” in modo che si colleghi a una copia della pagina [https://www.carnia.comunitafvg.it/](https://www.carnia.comunitafvg.it/). Anche questa è stata scaricata e caricata nel web server dell’attaccante. Inoltre, ho modificato anche il link alla pagina “accedi all’area personale” in alto a destra. Il sito web iniziale prevedeva vari metodi di autenticazione ma per semplicità ho selezionato solo quello con posteid. Quindi, quando la vittima schiaccerà su “accedi all’area personale” comparirà una copia della pagina di accesso con posteid, anche questa caricata nel web server dell'attaccante. Affinché l’accesso vada a buon fine, è necessario che l’attaccante riesca ad aprire una pagina di accesso con posteid autentica, quindi copiare velocemente il QRcode della pagina di accesso posteid, e inserirlo nella cartella `/var/www/html`. Nell'immagine sottostante è riportata la schermata di come si presenta la pagina al client, si può notare dal l'url non essere l'originale, però potrebbe facilmente trarre in inganno la vittima. Infine, poichè ho impostato che la pagina web visualizzata dalla vittima carichi lo screenshot contenuto nella cartella `/var/www/html`, se la vittima scannerizzerà il QRcode prima del finire del tempo della sua validità, permetterà l’autenticazione alla pagina da parte dell’attaccante. 
+
+
+
+![Pagina vittima](images/image6.png)
+
+
 
 # Conclusioni
+
+Questo attacco mette in luce le debolezze già note di un sito http, è stato dimostrato quanto facilmente possano essere cambiate le rispote DNS al fine di reindirizzare la vittima verso un'altro sito http, in particolare verso un si http controllato da un attaccante. Si è visto inoltre che è molto facile ricreare un sito molto simile, se non addirittura uguale all'originale, in modo da ingannarela vittima. La questione da sottolineare è quanto poi sia facile, partendo dalla pagina originale, cambire i "link ipertestuali" che magari originariamnete erano in https, in modo da reindirizzare la vittima ad altre pagine controllate dall'attaccante. 
 
 Alla vittima la pagina compare indistinguibile dall’originale. Di per sé, questo attacco può sembrare non essere molto utile in quanto non si ottengono né password né informazioni. Si può notare che cercando di fare il login si viene indirizzati verso un’altra pagina con connessione https. Scaricando anche questa pagina e cambiando la referenziazione dalla pagina html principale in modo che non vada a collegarsi alla pagina https bensì alla copia presente nel nostro web server possiamo facilmente rubare le credenziali.
 
