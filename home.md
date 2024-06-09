@@ -77,8 +77,19 @@ Poiché la pagina è sotto il controllo dell’attaccante, ho modificato il link
 
 # Conclusioni
 
-Questo attacco mette in luce le debolezze già note di un sito http, è stato dimostrato quanto facilmente possano essere cambiate le rispote DNS al fine di reindirizzare la vittima verso un'altro sito http, in particolare verso un si http controllato da un attaccante. Si è visto inoltre che è molto facile ricreare un sito molto simile, se non addirittura uguale all'originale, in modo da ingannarela vittima. La questione da sottolineare è quanto poi sia facile, partendo dalla pagina originale, cambire i "link ipertestuali" che magari originariamnete erano in https, in modo da reindirizzare la vittima ad altre pagine controllate dall'attaccante. 
+Questo attacco evidenzia le vulnerabilità già note di un sito HTTP, dimostrando quanto sia facile manipolare le risposte DNS per reindirizzare la vittima verso un altro sito HTTP, in particolare uno controllato da un attaccante. È stato anche dimostrato quanto sia semplice ricreare un sito web molto simile, se non identico, all'originale per ingannare la vittima. Un punto cruciale da sottolineare è quanto sia facile, partendo dalla pagina originale, modificare i link ipertestuali originariamente in HTTPS per reindirizzare la vittima a pagine controllate dall'attaccante. In questo caso, l'attaccante ha sfruttato il QR code per ingannare la vittima e autenticarsi al suo posto. Questo metodo, nello specifico, potrebbe essere difficile da attuare nella pratica a causa del breve tempo di validità del QR code. Tuttavia, è possibile replicare la stessa tipologia di attacco inserendo un link di accesso a un altro sito che utilizza solo l'autenticazione con username e password. Una volta che la vittima ha inserito le credenziali, potrebbe essere reindirizzata alla pagina originale fingendo un problema di connessione. In questo modo, la vittima potrebbe non accorgersi dell'inganno, permettendo all'attaccante di ottenere le sue credenziali.
 
-Alla vittima la pagina compare indistinguibile dall’originale. Di per sé, questo attacco può sembrare non essere molto utile in quanto non si ottengono né password né informazioni. Si può notare che cercando di fare il login si viene indirizzati verso un’altra pagina con connessione https. Scaricando anche questa pagina e cambiando la referenziazione dalla pagina html principale in modo che non vada a collegarsi alla pagina https bensì alla copia presente nel nostro web server possiamo facilmente rubare le credenziali.
+## Bibliografia
 
-## Credential access -> adversary-in-the-middle -> ARP cache poisoning
+MITRE ATT&CK
+https://attack.mitre.org/
+
+ChatGPT
+https://chatgpt.com
+
+Stack Overflow
+https://stackoverflow.com
+
+YouTube
+https://www.youtube.com
+
