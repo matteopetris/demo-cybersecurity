@@ -68,7 +68,7 @@ Ora, se la vittima cercherà di collegarsi a 'www.comunitamontanacarnia.it' invi
 
 ## Un possibile risvolto
 
-Poiché la pagina è sotto il controllo dell’attaccante, ho modificato il link associato alla scritta “Comunità di montagna della Carna” in modo che si colleghi a una copia della pagina [https://www.carnia.comunitafvg.it/](https://www.carnia.comunitafvg.it/). Anche questa è stata scaricata e caricata nel web server dell’attaccante. Inoltre, ho modificato anche il link alla pagina “accedi all’area personale” in alto a destra. Il sito web iniziale prevedeva vari metodi di autenticazione ma per semplicità ho selezionato solo quello con posteid. Quindi, quando la vittima schiaccerà su “accedi all’area personale” comparirà una copia della pagina di accesso con posteid, anche questa caricata nel web server dell'attaccante. Affinché l’accesso vada a buon fine, è necessario che l’attaccante riesca ad aprire una pagina di accesso con posteid autentica, quindi copiare velocemente il QRcode della pagina di accesso posteid, e inserirlo nella cartella `/var/www/html`. Nell'immagine sottostante è riportata la schermata di come si presenta la pagina al client, si può notare dal l'url non essere l'originale, però potrebbe facilmente trarre in inganno la vittima. Infine, poichè ho impostato che la pagina web visualizzata dalla vittima carichi lo screenshot contenuto nella cartella `/var/www/html`, se la vittima scannerizzerà il QRcode prima del finire del tempo della sua validità, permetterà l’autenticazione alla pagina da parte dell’attaccante. 
+Poiché la pagina è sotto il controllo dell’attaccante, sfruttando la tecnica "Template Injection", ho modificato il link associato alla scritta “Comunità di montagna della Carna” in modo che si colleghi a una copia della pagina [https://www.carnia.comunitafvg.it/](https://www.carnia.comunitafvg.it/). Anche questa è stata scaricata e caricata nel web server dell’attaccante. Inoltre, ho modificato anche il link alla pagina “accedi all’area personale” in alto a destra. Il sito web iniziale prevedeva vari metodi di autenticazione ma per semplicità ho selezionato solo quello con posteid. Quindi, quando la vittima schiaccerà su “accedi all’area personale” comparirà una copia della pagina di accesso con posteid, anche questa caricata nel web server dell'attaccante. Affinché l’accesso vada a buon fine, è necessario che l’attaccante riesca ad aprire una pagina di accesso con posteid autentica, quindi copiare velocemente il QRcode della pagina di accesso posteid, e inserirlo nella cartella `/var/www/html`. Nell'immagine sottostante è riportata la schermata di come si presenta la pagina al client, si può notare dal l'url non essere l'originale, però potrebbe facilmente trarre in inganno la vittima. Infine, poichè ho impostato che la pagina web visualizzata dalla vittima carichi lo screenshot contenuto nella cartella `/var/www/html`, se la vittima scannerizzerà il QRcode prima del finire del tempo della sua validità, permetterà l’autenticazione alla pagina da parte dell’attaccante. 
 
 
 
@@ -84,6 +84,9 @@ Questo attacco evidenzia le vulnerabilità già note di un sito HTTP, dimostrand
 
 MITRE ATT&CK
 https://attack.mitre.org/
+    Adversary-in-the-Middle  https://attack.mitre.org/techniques/T1557/
+    ARP Cache Poisoning  https://attack.mitre.org/techniques/T1557/002/
+    Template Injection  https://attack.mitre.org/techniques/T1221/
 
 ChatGPT
 https://chatgpt.com
@@ -93,4 +96,5 @@ https://stackoverflow.com
 
 YouTube
 https://www.youtube.com
+    ettercap  https://www.youtube.com/watch?v=cVTUeEoJgEg&t=309s
 
