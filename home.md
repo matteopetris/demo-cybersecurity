@@ -80,7 +80,7 @@ Poiché la pagina è sotto il controllo dell’attaccante, ho modificato il link
 
 Questo attacco evidenzia le vulnerabilità già note di un sito HTTP, dimostrando quanto sia facile manipolare le risposte DNS per reindirizzare la vittima verso un altro sito HTTP, in particolare uno controllato da un attaccante. È stato anche dimostrato quanto sia semplice ricreare un sito web molto simile, se non identico, all'originale per ingannare la vittima. Un punto cruciale da sottolineare è quanto sia facile, partendo dalla pagina originale, modificare i link ipertestuali originariamente in HTTPS per reindirizzare la vittima a pagine controllate dall'attaccante. In questo caso, l'attaccante ha sfruttato il QR code per ingannare la vittima e autenticarsi al suo posto. Questo metodo, nello specifico, potrebbe essere difficile da attuare nella pratica a causa del breve tempo di validità del QR code. Tuttavia, è possibile replicare la stessa tipologia di attacco inserendo un link di accesso a un altro sito che utilizza solo l'autenticazione con username e password. Una volta che la vittima ha inserito le credenziali, potrebbe essere reindirizzata alla pagina originale fingendo un problema di connessione. In questo modo, la vittima potrebbe non accorgersi dell'inganno, permettendo all'attaccante di ottenere le sue credenziali.
 
-## Bibliografia
+# Bibliografia
 
 MITRE ATT&CK
 https://attack.mitre.org/
