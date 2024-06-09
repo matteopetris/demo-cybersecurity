@@ -1,3 +1,4 @@
+# Report demo Cybersecurity: DNS spoofing e possibile risvolti
 # Introduzione
 
 Il mio progetto consiste nell’intercettare e modificare le risposte DNS per un determinato sito web: [http://www.comunitamontanacarnia.it](http://www.comunitamontanacarnia.it). L'obiettivo è far collegare il client a una copia del sito gestita da un web server controllato dall'attaccante. Nel mio caso, il web server è allocato nella macchina dell’attaccante. Questo attacco sfrutta la posizione dell'avversario che deve stare nella stessa rete della vittima utilizzando tecniche di ARP cache poisoning per diventare man-in-the-middle (MITM) e quindi poter modificare le risposte DNS.
@@ -63,7 +64,7 @@ Per avere una copia dalla pagina web `www.comunitamontanacarnia.it` l’ho scari
 
 Ora, se la vittima cercherà di collegarsi a `www.comunitamontanacarnia.it` invierà una richiesta DNS per questa pagina. La risposta che le arriverà conterrà l’indirizzo IP del web server dell’attaccante. Quindi lei si collegherà e le comparirà la pagina controllata dall’attaccante. L’immagine sottostante riporta come si presenta alla vittima la pagina. L’immagine al centro della pagina è stata aggiunta al fine di renderle distinguibili.
 
-![Pagina vittima](images/image6.png)
+
 
 ## Un possibile risvolto
 
