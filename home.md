@@ -52,13 +52,13 @@ Con l’uso di un codice Python modifico i pacchetti che hanno come `rrname='www
 Ora, quando la vittima prova a connettersi a [http://www.comunitamontanacarnia.it](http://www.comunitamontanacarnia.it), invierà una richiesta DNS verso il gateway. Questa passerà attraverso l’attaccante. Poi il gateway invierà la risposta alla vittima ma questa passerà attraverso l’attaccante che la modificherà mettendo l’indirizzo IP del suo web server. Quindi la vittima vedrà come risposta `www.comunitamontanacarnia.it A 10.0.2.15`.
 
 ![Modificare i pacchetti](images/image3.png)
-
+![Prova della modifica](images/image4.png)
 
 ## Preparazione web server
 
 Per avere una copia dalla pagina web `www.comunitamontanacarnia.it` l’ho scaricata usando il software HTTrack. Sono stati necessari pochi passaggi tra cui incollare il link della pagina da scaricare. Dopo aver eliminato l’index già presente nella cartella `/var/www/html` della macchina attaccante, ho quindi inserito la pagina scaricata. Per renderla distinguibile dall’originale ho aggiunto un’immagine esplicativa. Per avviare il web server dalla macchina dell’attaccante, usando il terminale, ho digitato `/var/www/html` e poi `sudo service apache2 start` questo avvia un web server. Digitando l’URL del web server (nel mio caso 10.0.2.15) apparirà la pagina web inserita nella cartella `/var/www/html`.
 
-![Prova della modifica](images/image4.png)
+
 ![Preparazione web server](images/image5.png)
 
 Ora, se la vittima cercherà di collegarsi a `www.comunitamontanacarnia.it` invierà una richiesta DNS per questa pagina. La risposta che le arriverà conterrà l’indirizzo IP del web server dell’attaccante. Quindi lei si collegherà e le comparirà la pagina controllata dall’attaccante. L’immagine sottostante riporta come si presenta alla vittima la pagina. L’immagine al centro della pagina è stata aggiunta al fine di renderle distinguibili.
