@@ -16,7 +16,7 @@ La configurazione nel mio caso specifico è:
 - **Macchina della vittima:** IP 10.0.2.6 MAC 08:00:27:65:4d:1c
 - **Gateway:** IP 10.0.2.1 MAC 52:54:00:12:35:00
 
-Per trovare l’indirizzo MAC dell’attaccante basta digitare da terminale `ip addr show eth0` mentre per trovare l’indirizzo IP si può usare `ifconfig`. Si può trovare l’indirizzo IP e MAC del gateway con il comando `ip neigh`. Per trovare l'idirizzo ip della vittima si può usare il comando 'nmap', in questo particolare caso 'nmap 10.0.2.0/24'. 
+Per trovare l’indirizzo MAC dell’attaccante basta digitare da terminale `ip addr show eth0` mentre per trovare l’indirizzo IP si può usare `ifconfig`. Si può trovare l’indirizzo IP e MAC del gateway con il comando `ip neigh`. Per trovare l'idirizzo ip della vittima si può usare il comando 'nmap', in questo particolare caso `nmap 10.0.2.0/24`. 
 
 # Svolgimento
 
@@ -43,14 +43,14 @@ Adesso che sono diventato MITM, voglio modificare la risposta DNS del sito quind
 
 ## Modificare i pacchetti in uscita
 
-Con l’uso di un codice Python modifico i pacchetti che hanno come `rrname='www.comunitamontanacarnia.it.'` mettendo al posto dell’indirizzo IP del web server di 'www.comunitamontanacarnia.it’ l’indirizzo IP del web server in cui è allocata la copia della pagina web (in questo caso IP macchina attaccante). A causa di alcuni problemi nell’effettuare questa modifica, ho preferito usare il formato esadecimale per eseguirla (riga 24 dell’immagine sottostante) andando a sostituire l’indirizzo in questione (da `c12bb1eb` a `0a00020f`= 10.0.2.15). Infine, nelle ultime righe dello script vengono inviati regolarmente tutti i pacchetti DNS non modificati mentre se vengono modificati viene inviato il pacchetto modificato. Per avviare il codice si usa il comando `sudo python “nome del file”` (nel mio caso `sudo python print_packet2.py`).
+Con l’uso di un codice Python modifico i pacchetti che hanno come `rrname='www.comunitamontanacarnia.it.'` mettendo al posto dell’indirizzo IP del web server di www.comunitamontanacarnia.it l’indirizzo IP del web server in cui è allocata la copia della pagina web (in questo caso IP macchina attaccante). A causa di alcuni problemi nell’effettuare questa modifica, ho preferito usare il formato esadecimale per eseguirla (riga 24 dell’immagine sottostante) andando a sostituire l’indirizzo in questione (da 'c12bb1eb' a '0a00020f'= 10.0.2.15). Infine, nelle ultime righe dello script vengono inviati regolarmente tutti i pacchetti DNS non modificati mentre se vengono modificati viene inviato il pacchetto modificato. Per avviare il codice si usa il comando `sudo python “nome del file”` (nel mio caso `sudo python print_packet2.py`).
 
 ![Deviare i pacchetti](images/image2.png)
 
 
 ## Prova della modifica dei pacchetti
 
-Ora, quando la vittima prova a connettersi a [http://www.comunitamontanacarnia.it](http://www.comunitamontanacarnia.it), invierà una richiesta DNS verso il gateway. Questa passerà attraverso l’attaccante. Poi il gateway invierà la risposta alla vittima ma questa passerà attraverso l’attaccante che la modificherà mettendo l’indirizzo IP del suo web server. Quindi la vittima vedrà come risposta `www.comunitamontanacarnia.it A 10.0.2.15`.
+Ora, quando la vittima prova a connettersi a [http://www.comunitamontanacarnia.it](http://www.comunitamontanacarnia.it), invierà una richiesta DNS verso il gateway. Questa passerà attraverso l’attaccante. Poi il gateway invierà la risposta alla vittima ma questa passerà attraverso l’attaccante che la modificherà mettendo l’indirizzo IP del suo web server. Quindi la vittima vedrà come risposta 'www.comunitamontanacarnia.it A 10.0.2.15'.
 
 ![Modificare i pacchetti](images/image3.png)
 ![Prova della modifica](images/image4.png)
@@ -62,7 +62,7 @@ Per avere una copia dalla pagina web `www.comunitamontanacarnia.it` l’ho scari
 
 ![Preparazione web server](images/image5.png)
 
-Ora, se la vittima cercherà di collegarsi a `www.comunitamontanacarnia.it` invierà una richiesta DNS per questa pagina. La risposta che le arriverà conterrà l’indirizzo IP del web server dell’attaccante. Quindi lei si collegherà e le comparirà la pagina controllata dall’attaccante. L’immagine sottostante riporta come si presenta alla vittima la pagina. L’immagine al centro della pagina è stata aggiunta al fine di renderle distinguibili.
+Ora, se la vittima cercherà di collegarsi a 'www.comunitamontanacarnia.it' invierà una richiesta DNS per questa pagina. La risposta che le arriverà conterrà l’indirizzo IP del web server dell’attaccante. Quindi lei si collegherà e le comparirà la pagina controllata dall’attaccante. L’immagine sottostante riporta come si presenta alla vittima la pagina. L’immagine al centro della pagina è stata aggiunta al fine di renderle distinguibili.
 
 
 
