@@ -3,7 +3,7 @@
 
 Il mio progetto consiste nell’intercettare e modificare le risposte DNS per un particolare sito web: [http://www.comunitamontanacarnia.it](http://www.comunitamontanacarnia.it). L'obiettivo è far collegare il client a una copia del sito gestita da un web server controllato dall'attaccante. Nel mio caso, il web server è allocato nella macchina dell’attaccante. L’esecuzione di questo attacco ha come presupposto che l’attaccante sia nella stessa rete della vittima, utilizzando tecniche di ARP cache poisoning per diventare man-in-the-middle (MITM) e quindi poter modificare le risposte DNS.
 
-# Threat Model
+# Threat Model 
 
 Il threat model preso in considerazione necessita che l’avversario sia sulla stessa rete della vittima e che possa utilizzare ARP cache poisoning per diventare MITM. Una volta ottenuto questo controllo, l'attaccante modifica le iptables in modo da reindirizzare il traffico DNS in uscita dalla sua macchina, verso uno script Python in grado di manipolare i pacchetti. Inoltre, l’attaccante deve essere in possesso di un web server in cui caricare la pagina falsa.
 
